@@ -94,7 +94,6 @@
 
   <div id="zonaCompasso" style="display: none;">
     <div class="compasso">
-      <!-- 8 slots -->
       <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       <div class="slot" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
@@ -107,6 +106,8 @@
 
     <button onclick="verificarCompasso()">✅ Verificar Compasso</button>
     <button onclick="tocarCompassoCorreto()">🔊 Ouvir Compasso Correto</button>
+    <button onclick="resetCompasso()">🔄 Reset</button>
+
     <div id="resultado"></div>
   </div>
 
@@ -207,6 +208,21 @@
         document.getElementById('mensagemMontar').style.display = 'block';
         document.getElementById('zonaCompasso').style.display = 'block';
       }
+    }
+
+    function resetCompasso() {
+      const slots = document.querySelectorAll('.slot');
+      slots.forEach(slot => {
+        slot.innerHTML = '';
+      });
+
+      const resultado = document.getElementById('resultado');
+      resultado.textContent = '';
+      resultado.style.color = '';
+
+      const audio = document.getElementById('audioPlayer');
+      audio.pause();
+      audio.currentTime = 0;
     }
   </script>
 
